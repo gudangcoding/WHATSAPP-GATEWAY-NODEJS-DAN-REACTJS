@@ -1,0 +1,25 @@
+-- Create auto_reply_logs table migration
+CREATE TABLE IF NOT EXISTS `auto_reply_logs` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `auto_reply_id` INT UNSIGNED NOT NULL,
+  `device_id` INT UNSIGNED NOT NULL,
+  `trigger_message_id` INT UNSIGNED NULL,
+  `from_number` VARCHAR(20) NOT NULL,
+  `trigger_text` TEXT NOT NULL,
+  `reply_sent` BOOLEAN DEFAULT FALSE,
+  `reply_job_id` VARCHAR(100) NULL,
+  `cooldown_active` BOOLEAN DEFAULT FALSE,
+  `daily_limit_reached` BOOLEAN DEFAULT FALSE,
+  `error_message` TEXT NULL,
+  `executed_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`auto_reply_id`) REFERENCES `auto_replies`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`device_id`) REFERENCES `devices`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`trigger_message_id`) REFERENCES `messages`(`id`) ON DELETE SET NULL,
+  INDEX `idx_auto_reply_logs_auto_reply_id` (`auto_reply_id`),
+  INDEX `idx_auto_reply_logs_device_id` (`device_id`),
+  INDEX `idx_auto_reply_logs_from_number` (`from_number`),
+  INDEX `idx_auto_reply_logs_executed_at` (`executed_at`),
+  INDEX `idx_auto_reply_logs_reply_sent` (`reply_sent`),
+  INDEX `idx_auto_reply_logs_device_date` (`device_id`, `executed_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

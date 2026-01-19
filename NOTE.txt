@@ -1,0 +1,192 @@
+KONTEKS GLOBAL (WAJIB DIGUNAKAN UNTUK SEMUA OUTPUT):
+Saya ingin membangun FRONTEND Web Application dengan laravel untuk WhatsApp Gateway SaaS Multi-Device.
+Frontend ini HANYA sebagai CLIENT yang mengonsumsi REST API + Socket.IO dari backend Node.js WhatsApp Gateway.
+
+==================================================
+BATASAN & RUANG LINGKUP:
+
+* HANYA frontend (TIDAK membuat backend)
+* TIDAK membuat logika WhatsApp
+* Semua data berasal dari API backend Node.js
+* Frontend bersifat production-ready, modular, dan scalable
+
+==================================================
+TEKNOLOGI FRONTEND WAJIB:
+
+* Laravel (Blade)
+* Bootstrap 5
+* Ajax Jquery
+* Socket.IO client
+* Chart.js (untuk statistik)
+* SweetAlert / Toast notification
+* Datatable ajax serverside
+
+(JIKA PERLU AUTH):
+
+* API Key / Token dari backend
+* Simpan token dengan aman (session / local storage sesuai best practice)
+
+==================================================
+TUJUAN APLIKASI FRONTEND:
+Frontend berfungsi sebagai:
+
+* Admin Panel
+* User Dashboard
+* Device Controller
+* Campaign Manager
+* Monitoring & Reporting Tool
+
+==================================================
+FITUR FRONTEND WAJIB:
+
+1. AUTH & USER MANAGEMENT
+
+* Login
+* Logout
+* Profile user
+* API Key management
+* Role (admin / user)
+
+2. DASHBOARD UTAMA
+
+* Statistik:
+
+  * Total device
+  * Device aktif / offline
+  * Total pesan terkirim
+  * Campaign berjalan
+* Chart realtime
+* Status sistem
+
+3. DEVICE MANAGEMENT
+
+* List device per user
+* Create / delete device
+* QR Code login (realtime via Socket.IO)
+* Status device realtime (connected, pairing, disconnected, banned)
+* Start / stop / restart device
+* Log event device
+
+4. CONTACT & GROUP
+
+* List kontak (private & grup)
+* Import hasil scrape
+* Filter & search
+* Detail kontak
+* Tagging kontak
+
+5. SINGLE MESSAGE
+
+* Form kirim pesan:
+
+  * Text
+  * Image
+  * Video
+  * Document
+  * Location
+  * List message
+  * Sticker
+  * Contact
+* Preview pesan
+* Pilih device
+* Riwayat pesan
+
+6. AUTO REPLY
+
+* List rule auto reply
+* Create / edit / delete rule
+* Rule priority
+* Support text + image / document
+* Toggle enable / disable
+
+7. BLAST / CAMPAIGN
+
+* Create campaign
+* Pilih target (kontak / grup)
+* Editor pesan (AI random placeholder)
+* Upload media (image / document)
+* Delay & schedule
+* Progress realtime
+* Statistik campaign
+
+8. AI FEATURES UI
+
+* Toggle AI mode
+* Preview hasil random pesan
+* Pengaturan delay dinamis
+* AI auto reply setting
+
+9. LOG & REPORT
+
+* Message log
+* Campaign log
+* Filter & export
+* Status delivery
+
+10. API DOCUMENTATION VIEWER
+
+* Buatkan dokumentasi penggunaan api dan geerate api key
+
+==================================================
+INTEGRASI API:
+
+* Gunakan Axios / Fetch
+* Semua request WAJIB:
+
+  * Header API Key / Token
+* Tangani error:
+
+  * Unauthorized
+  * Rate limit
+  * Device offline
+
+==================================================
+REALTIME (Socket.IO):
+
+* QR code update
+* Device status update
+* Campaign progress
+* Notification
+
+==================================================
+DESIGN & UX RULES:
+
+* Responsive (desktop & mobile)
+* Clean SaaS layout
+* Sidebar navigation
+* Modular component
+* Loading state & error state jelas
+
+==================================================
+TAHAPAN OUTPUT (IKUTI URUTAN):
+
+STEP 1:
+Jelaskan arsitektur frontend & alur komunikasi dengan backend (TANPA KODE).
+
+STEP 2:
+Buat sitemap & flow UI lengkap.
+
+STEP 3:
+Rancang struktur folder frontend.
+
+STEP 4:
+Rancang halaman & komponen utama (per fitur).
+
+STEP 5:
+Rancang state management & API service layer.
+
+STEP 6:
+Rancang integrasi Socket.IO client.
+
+STEP 7:
+Rancang UI/UX dashboard & campaign.
+
+STEP 8:
+SETELAH DISETUJUI, tuliskan kode frontend production-ready
+(per halaman / komponen, bertahap, tanpa mengubah arsitektur).
+
+==================================================
+CATATAN AKHIR:
+Gunakan dokumen ini sebagai SINGLE SOURCE OF TRUTH.
+Jangan menyederhanakan fitur.
+Jika ada ketidakjelasan, jelaskan dulu sebelum menulis kode.

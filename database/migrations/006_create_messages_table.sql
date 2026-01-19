@@ -1,0 +1,36 @@
+-- Create messages table migration
+DROP TABLE IF EXISTS `messages`;
+
+CREATE TABLE `messages` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT UNSIGNED NOT NULL,
+  `device_id` INT UNSIGNED NOT NULL,
+  `message_id` VARCHAR(255) NULL,
+  `to_number` VARCHAR(20) NOT NULL,
+  `from_number` VARCHAR(20) NULL,
+  `message_type` ENUM('text', 'image', 'video', 'audio', 'document', 'location', 'contact', 'sticker') NOT NULL,
+  `content` JSON NOT NULL,
+  `status` ENUM('pending', 'sent', 'delivered', 'read', 'failed', 'cancelled', 'scheduled') DEFAULT 'pending',
+  `priority` ENUM('low', 'normal', 'high') DEFAULT 'normal',
+  `retry_count` INT DEFAULT 0,
+  `max_retries` INT DEFAULT 3,
+  `error_message` TEXT NULL,
+  `scheduled_at` TIMESTAMP NULL,
+  `sent_at` TIMESTAMP NULL,
+  `delivered_at` TIMESTAMP NULL,
+  `read_at` TIMESTAMP NULL,
+  `failed_at` TIMESTAMP NULL,
+  `cancelled_at` TIMESTAMP NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`device_id`) REFERENCES `devices`(`id`) ON DELETE CASCADE,
+  INDEX `idx_messages_user_id` (`user_id`),
+  INDEX `idx_messages_device_id` (`device_id`),
+  INDEX `idx_messages_to_number` (`to_number`),
+  INDEX `idx_messages_status` (`status`),
+  INDEX `idx_messages_message_type` (`message_type`),
+  INDEX `idx_messages_scheduled_at` (`scheduled_at`),
+  INDEX `idx_messages_created_at` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
